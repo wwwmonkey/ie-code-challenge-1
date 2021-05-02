@@ -1,8 +1,7 @@
 import { jest } from "@jest/globals";
-import { quickTest, robotFalse, resetRobot, place, move, left, right, report } from "./robot";
+import { quickTest, robotPlacedFalse, place, move, left, right, report, resetRobot } from "./robot";
 
-console.log("tests running");
-
+// If this test fails it's configuration issue
 test("Jest is configured and working with ES6", () => {
   expect(quickTest()).toBe(true);
 });
@@ -18,6 +17,10 @@ describe("place", () => {
 });
 
 describe("move", () => {
+  test("reset robot should be true", () => {
+    expect(resetRobot()).toBe(true);
+  });
+
   test("move before place should be false", () => {
     expect(move()).toBe(false);
   });
@@ -36,6 +39,9 @@ describe("move", () => {
 });
 
 describe("left", () => {
+  test("reset robot should be true", () => {
+    expect(resetRobot()).toBe(true);
+  });
   test("left before place should be false", () => {
     expect(left()).toBe(false);
   });
@@ -62,6 +68,10 @@ describe("left", () => {
 });
 
 describe("right", () => {
+  test("reset robot should be true", () => {
+    expect(resetRobot()).toBe(true);
+  });
+
   test("right before place should be false", () => {
     expect(right()).toBe(false);
   });
@@ -88,11 +98,19 @@ describe("right", () => {
 });
 
 describe("report", () => {
+  test("reset robot should be true", () => {
+    expect(resetRobot()).toBe(true);
+  });
+
   test("report before place should be false", () => {
-    expect(report()).toBe(robotFalse);
+    expect(report()).toBe(robotPlacedFalse);
   });
 
   test("place 4,0,WEST is valid", () => {
-    expect(place(4, 0, "WEST")).toBe("Output: 4,0,WEST");
+    expect(place(4, 0, "WEST")).toBe(true);
+  });
+
+  test("reporting of place 4,0,WEST is valid", () => {
+    expect(report()).toBe("Output: 4,0,WEST");
   });
 });
